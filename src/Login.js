@@ -20,8 +20,8 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(user, pwd);
-        setUser('');
-        setPwd('');
+        //setUser('');
+        //setPwd('');
         setSuccess(true);
         } 
 
@@ -37,7 +37,7 @@ const Login = () => {
                 id="username"
                 ref={userRef} 
                 autoComplete="off"
-                onChange={(e) => SetUser(e.target.value)}
+                //onChange={(e) => SetUser(e.target.value)}
                 value={user}
                 required
             />
@@ -45,7 +45,7 @@ const Login = () => {
             <input 
                 type="password"
                 id="password"
-                onChange={(e) => SetPwd(e.target.value)}
+                //onChange={(e) => SetPwd(e.target.value)}
                 value={pwd}
                 required
             />
