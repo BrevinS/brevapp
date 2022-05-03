@@ -20,8 +20,8 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(user, pwd);
-        //setUser('');
-        //setPwd('');
+        setUser('');
+        setPwd('');
         setSuccess(true);
         } 
 
