@@ -26,38 +26,49 @@ const Login = () => {
         } 
 
     return (
-        <section>
-            <p ref={errRef} className={errMsg ? "errmsg"  : 
-        "offscreen"} aria-live="assertive">{errMsg}</p>
-        <h1> Sign in </h1>
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input 
-                type="text"
-                id="username"
-                ref={userRef} 
-                autoComplete="off"
-                //onChange={(e) => SetUser(e.target.value)}
-                value={user}
-                required
-            />
-            <label htmlFor="password">Password:</label>
-            <input 
-                type="password"
-                id="password"
-                //onChange={(e) => SetPwd(e.target.value)}
-                value={pwd}
-                required
-            />
-            <button>Sign In</button>
-        </form>
-        <p>
-            No Authentication? :(<br />
-            <span className="line">
-                <a href="#">Sign Up</a>
-            </span>
-        </p>
-    </section>
+        <>
+            {success ? (
+                <section>
+                    <h1>You are logged in</h1>
+                    <br />
+                    <p>
+                        <a href="#">Go home</a>
+                    </p>
+                </section>
+            ) : (
+            <section>
+                <p ref={errRef} className={errMsg ? "errmsg"  : 
+            "offscreen"} aria-live="assertive">{errMsg}</p>
+            <h1> Sign in </h1>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input 
+                    type="text"
+                    id="username"
+                    ref={userRef} 
+                    autoComplete="off"
+                    //onChange={(e) => SetUser(e.target.value)}
+                    value={user}
+                    required
+                />
+                <label htmlFor="password">Password:</label>
+                <input 
+                    type="password"
+                    id="password"
+                    //onChange={(e) => SetPwd(e.target.value)}
+                    value={pwd}
+                    required
+                />
+                <button>Sign In</button>
+            </form>
+            <p>
+                No Authentication? :(<br />
+                <span className="line">
+                    <a href="#">Sign Up</a>
+                </span>
+            </p>
+        </section>
+        )}</>
     )
 }
 
