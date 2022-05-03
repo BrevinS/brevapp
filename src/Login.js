@@ -47,7 +47,7 @@ const Login = () => {
                     id="username"
                     ref={userRef} 
                     autoComplete="off"
-                    //onChange={(e) => SetUser(e.target.value)}
+                    onChange={(e) => setUser(e.target.value)}
                     value={user}
                     required
                 />
@@ -55,7 +55,7 @@ const Login = () => {
                 <input 
                     type="password"
                     id="password"
-                    //onChange={(e) => SetPwd(e.target.value)}
+                    onChange={(e) => setPwd(e.target.value)}
                     value={pwd}
                     required
                 />
@@ -64,7 +64,7 @@ const Login = () => {
             <p>
                 No Authentication? :(<br />
                 <span className="line">
-                    <a href="#">Sign Up</a>
+                    <a href="/Register">Sign Up</a>
                 </span>
             </p>
         </section>
