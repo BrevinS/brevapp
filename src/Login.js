@@ -1,6 +1,11 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useContext } from 'react';
+import AuthContext from './context/AuthProvider';
+import axios from './api/axios'
+
+const LOGIN_URL = '/auth';
 
 const Login = () => {
+    const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -19,11 +24,25 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user, pwd);
-        setUser('');
-        setPwd('');
-        setSuccess(true);
-        } 
+
+        try {
+            const response = await axios.post(LOGIN_URL, 
+                JSON.stringify({user, pwd}),
+                {
+                    headers: {'Context-Type': 'application/json'},
+                    withCredentials: true
+                }
+            );
+            console.log(JSON.stringify(response?.data));
+            const accessToken = response?.data?.accessToken;
+            setAuth({ user, pwd, accessToken });
+            setUser('');
+            setPwd('');
+            setSuccess(true);
+        } catch (err) {
+            errRef.current.focus();
+        }
+    } 
 
     return (
         <>
@@ -36,39 +55,43 @@ const Login = () => {
                     </p>
                 </section>
             ) : (
-            <section>
-                <p ref={errRef} className={errMsg ? "errmsg"  : 
+        <section>
+            <p ref={errRef} className={errMsg ? "errmsg"  : 
             "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1> Sign in </h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
-                <input 
-                    type="text"
-                    id="username"
-                    ref={userRef} 
-                    autoComplete="off"
-                    onChange={(e) => setUser(e.target.value)}
-                    value={user}
-                    required
-                />
-                <label htmlFor="password">Password:</label>
-                <input 
-                    type="password"
-                    id="password"
-                    onChange={(e) => setPwd(e.target.value)}
-                    value={pwd}
-                    required
-                />
-                <button>Sign In</button>
-            </form>
+        <h1> Sign in </h1>
+
+        <form onSubmit={handleSubmit}>
+            <label htmlFor="username">Username:</label>
+            <input 
+                type="text"
+                id="username"
+                ref={userRef} 
+                autoComplete="off"
+                onChange={(e) => setUser(e.target.value)}
+                value={user}
+                required
+            />
+
+            <label htmlFor="password">Password:</label>
+            <input 
+                type="password"
+                id="password"
+                onChange={(e) => setPwd(e.target.value)}
+                value={pwd}
+                required
+            />
+            <button>Sign In</button>
+        </form>
+
             <p>
                 No Authentication? :(<br />
                 <span className="line">
-                    <a href="/Register">Sign Up</a>
+                    <a href="#">Sign Up</a>
                 </span>
             </p>
         </section>
-        )}</>
+        )}
+        </>
     )
 }
 
