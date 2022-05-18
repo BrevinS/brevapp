@@ -1,13 +1,27 @@
 import './App.css';
 import Login from './Login';
-//import Register from './Register';
+import Register from './Register';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './layout/Navbar'
 
 
 function App() {
   return (
-    <main className="App">
-      <Login />
-    </main>
+    <Router>
+      <main className="App">
+      <Navbar />
+        <div className="content">
+          
+          <Switch>
+            <Route path="/">
+            
+
+            </Route>
+          </Switch>
+        </div>
+      </main>
+    </Router>
+    
   );
 }
 
