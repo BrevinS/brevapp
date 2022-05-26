@@ -1,4 +1,7 @@
 # Brevin side website side project
+## UPDATE: I will never willingly use a javascript for the time being. Back to Flask I go... 
+## Active Project is: https://github.com/BrevinS/brebapp
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
